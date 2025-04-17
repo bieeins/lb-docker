@@ -1,0 +1,78 @@
+server {
+    listen 80;
+    server_name supabase.bksdev.my.id;
+    # return 301 https://$host$request_uri;
+
+    location / {
+        proxy_pass http://supabase-kong:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        # Tambahkan header untuk WebSocket (penting untuk code-server)
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "Upgrade";
+        
+        # Timeout untuk WebSocket
+        proxy_read_timeout 86400;
+    }
+
+    error_log /var/log/nginx/supabase_app_error.log;
+    access_log /var/log/nginx/supabase_app_access.log main;
+}
+
+server {
+    listen 80;
+    server_name db.supabase.bksdev.my.id;
+
+    location / {
+        proxy_pass http://supabase-db:5432;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+
+# server {
+#     listen 80;
+#     server_name rest.supabase.bksdev.my.id;
+
+#     location / {
+#         proxy_pass http://supabase-rest:3000;
+#         proxy_set_header Host $host;
+#     }
+# }
+
+# server {
+#     listen 80;
+#     server_name realtime.supabase.bksdev.my.id;
+
+#     location / {
+#         proxy_pass http://supabase-analytics:4000;
+#         proxy_set_header Host $host;
+#     }
+# }
+
+# server {
+#     listen 80;
+#     server_name storage.supabase.bksdev.my.id;
+
+#     location / {
+#         proxy_pass http://supabase-storage:5000;
+#         proxy_set_header Host $host;
+#     }
+# }
+
+server {
+    listen 80;
+    server_name studio.supabase.bksdev.my.id;
+
+    location / {
+        proxy_pass http://supabase-studio:3000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}

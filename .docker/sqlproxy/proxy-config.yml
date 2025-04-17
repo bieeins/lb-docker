@@ -1,0 +1,29 @@
+- instance: db
+  name: master
+  ip_addresses:
+    - 127.0.0.1
+  hosts:
+    - write
+  credentials:
+    username: db_user
+    password: dbpass
+
+- instance: slave1
+  name: replica1
+  ip_addresses:
+    - 127.0.0.1
+  hosts:
+    - read
+  credentials:
+    username: db_user
+    password: dbpass
+
+- instance: slave2
+  name: replica2
+  ip_addresses:
+    - 127.0.0.1
+  hosts:
+    - read
+  credentials:
+    username: db_user
+    password: dbpass
