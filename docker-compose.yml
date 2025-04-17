@@ -221,7 +221,7 @@ services:
     environment:
       - ENV=production #change to 'production' to generate real certificates. 'staging' will by default dry run the request to prevent hitting rate limits during testing
       # - CN="supabase.bksdev.my.id" #comma separated values of all the domains you wish to add ssl certificates on
-      - CN="dataku.my.id,solusiku.my.id,bks.my.id,bksdev.my.id,copas.my.id,restapi.my.id,gudang.my.id,hms.solusiku.my.id,adoctor.solusiku.my.id,verserdikppg.bksdev.my.id, register-tryout.bksdev.my.id, app-pmb.bksdev.my.id, api.dataku.my.id, absensi.restapi.my.id,fixit.restapi.my.id,pos.solusiku.my.id,supabase.bksdev.my.id,vscode.bksdev.my.id" #comma separated values of all the domains you wish to add ssl certificates on
+      - CN="dataku.my.id," #comma separated values of all the domains you wish to add ssl certificates on
       - EMAIL="bieeins@gmail.com"
     networks:
       - frontend
