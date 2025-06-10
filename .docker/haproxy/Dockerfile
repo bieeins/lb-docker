@@ -1,7 +1,5 @@
 FROM haproxy:latest
 
-LABEL maintainer="bieeins"
-
 USER root
 
 RUN apt-get update && \
