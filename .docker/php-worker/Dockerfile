@@ -7,8 +7,6 @@
 ARG LARADOCK_PHP_VERSION
 FROM php:${LARADOCK_PHP_VERSION}-alpine
 
-LABEL maintainer="BKS <bieeins@gmail.com>"
-
 ARG LARADOCK_PHP_VERSION
 
 # If you're in China, or you need to change sources, will be set CHANGE_SOURCE to true in .env.

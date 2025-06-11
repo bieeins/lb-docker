@@ -1,7 +1,5 @@
 FROM jc21/nginx-proxy-manager:latest
 
-LABEL maintainer="BKS <bieeins@gmail.com>"
-
 # Set timezone
 ARG TZ=UTC
 ENV TZ ${TZ}
