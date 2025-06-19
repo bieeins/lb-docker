@@ -47,14 +47,18 @@ ENV PGID ${PGID}
 
 # always run apt update when start and after add new source list, then clean up at end.
 RUN set -xe; \
-  add-apt-repository universe && \
   apt-get update -yqq && \
-  pecl channel-update pecl.php.net && \
-  groupadd -g ${PGID} laradock && \
-  useradd -l -u ${PUID} -g laradock -m laradock -G docker_env && \
-  usermod -p "*" laradock -s /bin/bash && \
-  apt-get install -yqq \
-  apt-utils \
+    pecl channel-update pecl.php.net && \
+    if [ $(php -r "echo PHP_MAJOR_VERSION;") = "8" ] && [ $(php -r "echo PHP_MINOR_VERSION;") != "0" ]; then \
+      groupmod --new-name laradock ubuntu; \
+      usermod --login laradock ubuntu --move-home --home /home/laradock; \
+    else \
+      groupadd -g ${PGID} laradock; \
+      useradd -l -u ${PUID} -g laradock -m laradock -G docker_env; \
+    fi; \
+    usermod -p "*" laradock -s /bin/bash && \
+    apt-get install -yqq \
+      apt-utils \
   #
   #--------------------------------------------------------------------------
   # Mandatory Software's Installation
