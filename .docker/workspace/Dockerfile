@@ -1910,7 +1910,7 @@ RUN if [ ${INSTALL_ALLOW_VSCODE} = true ]; then \
   echo "bind-addr: 0.0.0.0:8081" > /root/.config/code-server/config.yaml &&\
   echo "auth: password" >> /root/.config/code-server/config.yaml &&\
   # echo "password: "${VSCODE_PASSWORD} >> /root/.config/code-server/config.yaml &&\
-  echo "password: Rahasia007" >> /root/.config/code-server/config.yaml &&\
+  echo "password: isi_password" >> /root/.config/code-server/config.yaml &&\
   echo "cert: false" >> /root/.config/code-server/config.yaml &&\
   # Install fontconfig
   apt-get update && apt-get install -y fontconfig && \
